@@ -206,6 +206,8 @@ static void set_task_reclaim_state(struct task_struct *task,
 LIST_HEAD(shrinker_list);
 DECLARE_RWSEM(shrinker_rwsem);
 
+int demote_scale_factor = 200;
+
 #ifdef CONFIG_MEMCG
 static int shrinker_nr_max;
 

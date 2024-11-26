@@ -83,7 +83,7 @@
 #endif
 
 /* shared constants to be used in various sysctls */
-const int sysctl_vals[] = { 0, 1, 2, 3, 4, 100, 200, 1000, 3000, INT_MAX, 65535, -1 };
+const int sysctl_vals[] = { 0, 1, 2, 3, 4, 100, 200, 1000, 3000, INT_MAX, 65535, -1, 10000 };
 EXPORT_SYMBOL(sysctl_vals);
 
 const unsigned long sysctl_long_vals[] = { 0, 1, LONG_MAX };
@@ -2263,6 +2263,15 @@ static struct ctl_table vm_table[] = {
 		.proc_handler	= watermark_scale_factor_sysctl_handler,
 		.extra1		= SYSCTL_ONE,
 		.extra2		= SYSCTL_THREE_THOUSAND,
+	},
+	{
+		.procname       = "demote_scale_factor",
+		.data           = &demote_scale_factor,
+		.maxlen         = sizeof(demote_scale_factor),
+		.mode           = 0644,
+		.proc_handler   = demote_scale_factor_sysctl_handler,
+		.extra1         = SYSCTL_ONE,
+		.extra2         = SYSCTL_TEN_THOUSAND,
 	},
 	{
 		.procname	= "percpu_pagelist_high_fraction",
